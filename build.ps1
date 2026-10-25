@@ -167,7 +167,8 @@ try {
         } | Sort-Object -Property Version -Descending)
         if ($versionFiles.Count -gt 0) {
             $composed = $logHeader + "`n" + (($versionFiles | ForEach-Object { $_.Raw.Trim() }) -join "`n`n") + "`n"
-            [System.IO.File]::WriteAllText($changelogPath, $composed, [System.Text.Encoding]::UTF8)
+            $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+            [System.IO.File]::WriteAllText($changelogPath, $composed, $utf8NoBom)
             Write-Host "[Changelog] Composed root CHANGELOG.md from $($versionFiles.Count) version fragment(s)." -ForegroundColor Cyan
         }
     }
