@@ -8,7 +8,7 @@
     <AssemblyName>VikingAI</AssemblyName>
     <RootNamespace>VikingAI</RootNamespace>
     <Product>VikingAI</Product>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>DigitalVikings</Authors>
     <LangVersion>11</LangVersion>
     <Nullable>enable</Nullable>

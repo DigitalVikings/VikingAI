@@ -19,7 +19,7 @@ namespace VikingAI
     {
         public const string ModGuid = "com.digitalvikings.vikingai";
         public const string ModName = "VikingAI";
-        public const string ModVersion = "0.1.0";
+        public const string ModVersion = "0.1.1";
 
         public static VikingAIPlugin Instance { get; private set; } = null!;
         public static ManualLogSource Log { get; internal set; } = null!;

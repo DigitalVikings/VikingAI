@@ -1,6 +1,6 @@
 {
   "name": "VikingAI",
-  "version_number": "0.1.0",
+  "version_number": "0.1.1",
   "website_url": "https://github.com/DigitalVikings/VikingAI",
   "description": "Foundational 2.5D navigation graph, flow-field steering, tactical pack coordination, smart-object affordances, and virtual NPC simulation framework for Valheim.",
   "dependencies": [

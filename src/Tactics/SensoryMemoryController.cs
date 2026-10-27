@@ -54,8 +54,26 @@ namespace VikingAI.Tactics
 
         private static readonly AccessTools.FieldRef<BaseAI, Character> _aiCharacter =
             AccessTools.FieldRefAccess<BaseAI, Character>("m_character");
-        private static readonly AccessTools.FieldRef<BaseAI, int> _viewBlockMask =
-            AccessTools.FieldRefAccess<BaseAI, int>("m_viewBlockMask");
+        private static readonly AccessTools.FieldRef<int>? _viewBlockMask =
+            AccessTools.Field(typeof(BaseAI), "m_viewBlockMask") != null
+                ? AccessTools.StaticFieldRefAccess<int>(AccessTools.Field(typeof(BaseAI), "m_viewBlockMask"))
+                : null;
+        private static int _fallbackViewBlockMask;
+
+        private static int GetViewBlockMask()
+        {
+            if (_viewBlockMask != null)
+            {
+                int mask = _viewBlockMask();
+                if (mask != 0) return mask;
+            }
+
+            if (_fallbackViewBlockMask == 0)
+            {
+                _fallbackViewBlockMask = LayerMask.GetMask("Default", "static_solid", "Default_small", "piece", "terrain", "viewblock", "vehicle");
+            }
+            return _fallbackViewBlockMask;
+        }
 
         public static SensoryTrack GetOrCreateTrack(BaseAI ai)
         {
@@ -117,7 +135,7 @@ namespace VikingAI.Tactics
             }
 
             // Line of sight raycast
-            int mask = _viewBlockMask(ai);
+            int mask = GetViewBlockMask();
             if (Physics.Raycast(obsEye, toTarget / Mathf.Max(0.01f, dist), dist, mask))
             {
                 return false;

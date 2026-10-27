@@ -2,6 +2,11 @@
 
 All notable changes to **VikingAI** will be documented in this file.
 
+## [0.1.1] - 2026-10-27
+
+### Fixed
+- **Line-of-Sight Raycast Stability**: Hardened sensory perception layer mask resolution across custom creature prefabs to prevent null reference interruptions during vision checks.
+
 ## [0.1.0] - 2026-10-25
 
 ### Added
